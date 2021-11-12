@@ -1,7 +1,4 @@
-var json_ROISorek = {"type":"FeatureCollection","name":"ROISorek","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"provinsi":"Riau","kabupat":"KAB. KAMPAR","jenis_kph":"KPHP","unit_kph":"Sorek","nama_kph":"Sorek","fungsi_kws":"HPT","luas_ha":1`7595`,"sk_HPD":"SK.3887/Menlhk-PSKL/PKPS/PSL.0/7/2017","tgl_sk_HPD":"13/07/2017"},"geometry":{"type":"MultiPolygon","coordinates":[
-    [
-      [
-        101.43068867500003,
+var json_ROISorek = {"type":"FeatureCollection","name":"ROISorek","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"provinsi":"Riau","kabupat":"KAB. KAMPAR","jenis_kph":"KPHP","unit_kph":"Sorek","nama_kph":"Sorek","fungsi_kws":"HPT","luas_ha":1`7595`,"sk_HPD":"SK.3887/Menlhk-PSKL/PKPS/PSL.0/7/2017","tgl_sk_HPD":"13/07/2017"},"geometry":{"type":"MultiPolygon","coordinates":[[[101.43068867500003,
         -0.008943675999868436
       ],
       [
