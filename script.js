@@ -80,11 +80,11 @@ var updateSidebar = function(marker) {
           </tr>\
           <tr>\
             <th scope="row">Perhutanan Sosial</th>\
-            <td>'+d.perhutanan_sosial+'</td>\
+            <td>'+d.unit_PS+'</td>\
           </tr>\
           <tr>\
             <th scope="row">Nama Khas Wilayah</th>\
-            <td>'+d.nama_khas+'</td>\
+            <td>'+d.nama_khas_wilayah+'</td>\
           </tr>\
           <tr>\
             <th scope="row">Jenis Lahan</th>\
@@ -101,6 +101,10 @@ var updateSidebar = function(marker) {
           <tr>\
             <th scope="row">Jarak Permukiman</th>\
             <td>'+d.jarak_permukiman+' km </td>\
+          </tr>\
+          <tr>\
+            <th scope="row">Status Adopsi</th>\
+            <td>'+d.status_adopsi+'</td>\
           </tr>\
           <tr>\
             <th scope="row">Nama Pengadopsi</th>\
@@ -120,15 +124,11 @@ var updateSidebar = function(marker) {
           </tr>\
           <tr>\
             <th scope="row">Harga Adopsi</th>\
-            <td>'+d.harga_adopsi+'</td>\
-          </tr>\
-          <tr>\
-            <th scope="row">Stok Karbon</th>\
-            <td>'+d.stok_karbon+'</td>\
+            <td> Rp '+d.harga_adopsi+'</td>\
           </tr>\
           <tr>\
             <th scope="row">Serapan Karbon</th>\
-            <td>'+d.serapan_karbon+'</td>\
+            <td>'+d.serapan_karbon+' Kg </td>\
           </tr>\
           <tr>\
             <th scope="row">Penyedia Bibit</th>\
@@ -141,8 +141,8 @@ var updateSidebar = function(marker) {
         </table>'
       );
     
-      if (d.GoogleMapsLink) {
-        $('#googleMaps').removeClass('dn').addClass('dt').attr('href', d.GoogleMapsLink);
+      if (d.chart_link) {
+        $('#googleMaps').removeClass('dn').addClass('dt').attr('href', d.chart_link);
       } else {
         $('#googleMaps').addClass('dn').removeClass('dt');
       }
@@ -156,16 +156,16 @@ var updateSidebar = function(marker) {
 
         if (d[idx]) {
 
-          var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
+          // var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
 
-          if (source && d[idx + 'SourceLink']) {
-            source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
-          }
+          // if (source && d[idx + 'SourceLink']) {
+          //   source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
+          // }
 
           var a = $('<a/>', {
             href: d[idx],
             'data-lightbox': 'gallery',
-            'data-title': ( d[idx + 'Caption'] + ' ' + source )  || '',
+            //'data-title': ( d[idx + 'Caption'] + ' ' + source )  || '',
             'data-alt': d.kode_pohon,
             'class': i === 1 ? '' : 'dn'
           });
@@ -251,7 +251,7 @@ var addMarkers = function(data) {
     groups[g].addTo(map);
   }
   
-  L.control.layers({}, groups, {collapsed: true, position: 'topright'}).addTo(map);
+  L.control.layers({}, groups, {collapsed: true, position: 'bottomright'}).addTo(map);
   //$('.leaflet-control-layers-overlays').prepend('<h3 class="mt0 mb1 f5 black-30">Legend</h3>');
 
   // If name in hash, activate it
@@ -358,7 +358,10 @@ var initMap = function() {
   layer_GoogleSatellite_2;
   map.addLayer(layer_GoogleSatellite_2)
 
-  function style_bataskawasan() {
+// styling, and event listener to layer_BatasKawasan
+ var layer_BatasKawasan;
+
+  function style_bataskawasan(feature) {
     return {
       opacity: 1,
       color: 'rgba(35,35,35,1.0)',
@@ -368,23 +371,80 @@ var initMap = function() {
       weight: 1.0,
       fill: true,
       fillOpacity: 1,
-      fillColor: 'rgba(135,116,158,0.298)',
+      fillColor: 'rgba(135,116,158,0.2)',
       interactive: true,
     }
   }
+//style when hovered
+function highlightFeature(e) {
+   var layer = e.target;
+
+   layer.setStyle({
+      opacity: 1,
+      color: 'rgba(35,35,35,1.0)',
+      dashArray: '',
+      lineCap: 'butt',
+      lineJoin: 'miter',
+      weight: 3.0,
+      fill: true,
+      fillOpacity: 1,
+      fillColor: 'rgba(135,116,158,0.3)',
+      interactive: true,
+   });
+
+   if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+      layer.bringToFront();
+   }
+   info.update(layer.feature.properties); 
+}
+//reset hover state
+function resetHighlight(e) {
+   layer_BatasKawasan.resetStyle(e.target);
+   info.update(); 
+}
+//zoom while clicking
+function zoomToFeature(e) {
+   map.fitBounds(e.target.getBounds());
+}
+// event listener package
+function onEachFeature(feature, layer) {
+   layer.on({
+      mouseover: highlightFeature,
+      mouseout: resetHighlight,
+      click: zoomToFeature
+   });
+}
+
   map.createPane('pane_PohonAdopsiMinastahura_4');
   map.getPane('pane_PohonAdopsiMinastahura_4').style.zIndex = 1;
   map.getPane('pane_PohonAdopsiMinastahura_4').style['mix-blend-mode'] = 'normal';
-  var layer_BatasKawasan = new L.geoJson(json_BatasKawasanTahuraSultanSyarifQasim_3,{
+
+  layer_BatasKawasan = L.geoJson(json_BatasKawasanTahuraSultanSyarifQasim_3,{
     attribution: '',
     interactive: true,
     dataVar: 'json_BatasKawasanTahuraSultanSyarifQasim_3',
     layerName: 'layer_BatasKawasanTahuraSultanSyarifQasim_3',
-    style: style_bataskawasan
+    style: style_bataskawasan,
+    onEachFeature: onEachFeature,
     //pane: 'pane_PohonAdopsiMinastahura_4'
   });
   map.addLayer(layer_BatasKawasan);
 
+//Get "kabupat" from Geojsonfile for area information when hovered
+var info = L.control();
+info.onAdd = function (map) {
+   this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+   this.update();
+   return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+   this._div.innerHTML = '<h4>Daerah</h4>' + (props ?
+      props.kabupat
+      : '');
+};
+info.addTo(map);
 
   //group basemaps
   basemaps= {
