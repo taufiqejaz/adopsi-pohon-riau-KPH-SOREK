@@ -415,15 +415,15 @@ function onEachFeature(feature, layer) {
    });
 }
 
-  map.createPane('pane_PohonAdopsiMinastahura_4');
-  map.getPane('pane_PohonAdopsiMinastahura_4').style.zIndex = 1;
-  map.getPane('pane_PohonAdopsiMinastahura_4').style['mix-blend-mode'] = 'normal';
+  map.createPane('pane_ROISorek');
+  map.getPane('pane_ROISorek').style.zIndex = 1;
+  map.getPane('pane_ROISorek').style['mix-blend-mode'] = 'normal';
 
-  layer_BatasKawasan = L.geoJson(json_BatasKawasanTahuraSultanSyarifQasim_3,{
+  layer_BatasKawasan = L.geoJson(json_ROISorek,{
     attribution: '',
     interactive: true,
-    dataVar: 'json_BatasKawasanTahuraSultanSyarifQasim_3',
-    layerName: 'layer_BatasKawasanTahuraSultanSyarifQasim_3',
+    dataVar: 'json_ROISorek',
+    layerName: 'layer_ROISorek',
     style: style_bataskawasan,
     onEachFeature: onEachFeature,
     //pane: 'pane_PohonAdopsiMinastahura_4'
