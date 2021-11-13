@@ -3,7 +3,7 @@
 const dataLocation = 'data/SOREK.csv';
 
 // Map's initial center, and zoom level
-const mapCenter = [0.6795, 101.345];
+const mapCenter = [0.063, 102.020];
 const mapZoom = 12;
 
 // Marker icon height and width
