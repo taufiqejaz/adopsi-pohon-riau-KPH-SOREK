@@ -375,7 +375,7 @@ var initMap = function() {
       interactive: true,
     }
   }
-?*
+/*
 //style when hovered
 function highlightFeature(e) {
    var layer = e.target;
