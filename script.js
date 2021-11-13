@@ -375,6 +375,7 @@ var initMap = function() {
       interactive: true,
     }
   }
+?*
 //style when hovered
 function highlightFeature(e) {
    var layer = e.target;
@@ -445,7 +446,7 @@ info.update = function (props) {
       : '');
 };
 info.addTo(map);
-
+*/
   //group basemaps
   basemaps= {
     "Peta Dasar (OSM Standard)":layer_OSMStandard_0,
