@@ -441,7 +441,7 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
    this._div.innerHTML = '<h4>Daerah</h4>' + (props ?
-      props.kabupat
+      props.nama_kph
       : '');
 };
 info.addTo(map);
