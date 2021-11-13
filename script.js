@@ -156,11 +156,11 @@ var updateSidebar = function(marker) {
 
         if (d[idx]) {
 
-          // var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
+          var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
 
-          // if (source && d[idx + 'SourceLink']) {
-          //   source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
-          // }
+          if (source && d[idx + 'SourceLink']) {
+             source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
+           }
 
           var a = $('<a/>', {
             href: d[idx],
