@@ -151,14 +151,14 @@ var updateSidebar = function(marker) {
       $('#galleryIcon').hide();
 
       // Load up to 5 images
-      for (var i = 1; i <= 5; i++) {
+      for (var i = 1; i <= 4; i++) {
         var idx = 'Image' + i;
 
         if (d[idx]) {
 
-          var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
+           var source = "<em class='normal'>" + d[idx + 'Source'] + '</em>';
 
-          if (source && d[idx + 'SourceLink']) {
+           if (source && d[idx + 'SourceLink']) {
              source = "<a href='" + d[idx + 'SourceLink'] + "' target='_blank'>" + source + "</a>";
            }
 
@@ -375,7 +375,6 @@ var initMap = function() {
       interactive: true,
     }
   }
-/*
 //style when hovered
 function highlightFeature(e) {
    var layer = e.target;
@@ -420,17 +419,18 @@ function onEachFeature(feature, layer) {
   map.getPane('pane_PohonAdopsiMinastahura_4').style.zIndex = 1;
   map.getPane('pane_PohonAdopsiMinastahura_4').style['mix-blend-mode'] = 'normal';
 
-  layer_BatasKawasan = L.geoJson(json_BatasKawasanTahuraSultanSyarifQasim_3,{
+  layer_BatasKawasan = L.geoJson(json_BatasKawasanSorek,{
     attribution: '',
     interactive: true,
-    dataVar: 'json_BatasKawasanTahuraSultanSyarifQasim_3',
-    layerName: 'layer_BatasKawasanTahuraSultanSyarifQasim_3',
+    dataVar: 'json_BatasKawasanSorek',
+    layerName: 'layer_BatasKawasanSorek',
     style: style_bataskawasan,
     onEachFeature: onEachFeature,
     //pane: 'pane_PohonAdopsiMinastahura_4'
   });
   map.addLayer(layer_BatasKawasan);
 
+  
 //Get "kabupat" from Geojsonfile for area information when hovered
 var info = L.control();
 info.onAdd = function (map) {
@@ -442,11 +442,11 @@ info.onAdd = function (map) {
 // method that we will use to update the control based on feature properties passed
 info.update = function (props) {
    this._div.innerHTML = '<h4>Daerah</h4>' + (props ?
-      props.nama_kph
+      props.kabupat // <- CHANGE INTO ANOTHER LOCATION INFORMATION
       : '');
 };
 info.addTo(map);
-*/
+
   //group basemaps
   basemaps= {
     "Peta Dasar (OSM Standard)":layer_OSMStandard_0,
