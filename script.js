@@ -251,7 +251,7 @@ var addMarkers = function(data) {
     groups[g].addTo(map);
   }
   
-  L.control.layers({}, groups, {collapsed: true, position: 'bottomright'}).addTo(map);
+  L.control.layers({}, groups, {collapsed: true, position: 'topright'}).addTo(map);
   //$('.leaflet-control-layers-overlays').prepend('<h3 class="mt0 mb1 f5 black-30">Legend</h3>');
 
   // If name in hash, activate it
@@ -430,7 +430,7 @@ function onEachFeature(feature, layer) {
   });
   map.addLayer(layer_BatasKawasan);
 
-  
+/*
 //Get "kabupat" from Geojsonfile for area information when hovered
 var info = L.control();
 info.onAdd = function (map) {
@@ -446,7 +446,7 @@ info.update = function (props) {
       : '');
 };
 info.addTo(map);
-
+*/
   //group basemaps
   basemaps= {
     "Peta Dasar (OSM Standard)":layer_OSMStandard_0,
